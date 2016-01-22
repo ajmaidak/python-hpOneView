@@ -57,19 +57,19 @@ class servers(object):
     # Server Hardware
     ###########################################################################
     def get_server_by_bay(self, baynum):
-        servers = get_members(self._con.get(uri['servers']))
+        servers = get_members(self._con.get(uri['servers'] + '?start=0&count=99999'))
         for server in servers:
             if server['position'] == baynum:
                 return server
 
     def get_server_by_name(self, name):
-        servers = get_members(self._con.get(uri['servers']))
+        servers = get_members(self._con.get(uri['servers'] + '?start=0&count=99999'))
         for server in servers:
             if server['shortModel'] == name:
                 return server
 
     def get_servers(self):
-        return get_members(self._con.get(uri['servers']))
+        return get_members(self._con.get(uri['servers'] + '?start=0&count=99999'))
 
     def get_server_hardware_types(self):
         body = self._con.get(uri['server-hardware-types'])
